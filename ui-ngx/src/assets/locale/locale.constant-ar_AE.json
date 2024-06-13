@@ -6315,7 +6315,11 @@
         "search": "بحث عن أداة",
         "filter": "نوع فلتر الأداة",
         "loading-widgets": "جاري تحميل الأدوات...",
-        "widget-template-error": "قالب HTML الأداة غير صالح."
+        "widget-template-error": "قالب HTML الأداة غير صالح.",
+        "data-export": "تصدير البيانات",
+        "data-export-csv": "CSV صيغة",
+        "data-export-xlsx": "XLSX صيغة",
+        "data-export-xls": "XLS صيغة"
     },
     "widget-action": {
         "header-button": "زر رأس الودجة",
