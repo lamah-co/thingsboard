@@ -17,8 +17,8 @@
 -->
 <div class="tb-widget-config tb-absolute-fill">
   <div class="tb-widget-config-header" *ngIf="!hideHeader">
-    <tb-toggle-select *ngIf="!hideToggleHeader && widgetConfigMode === widgetConfigModes.advanced"
-                      appearance="fill" [options]="headerOptions" [(ngModel)]="selectedOption">
+    <tb-toggle-select *ngIf="!hideToggleHeader && widgetConfigMode === widgetConfigModes.advanced" appearance="fill"
+      [options]="headerOptions" [(ngModel)]="selectedOption">
     </tb-toggle-select>
     <div class="tb-widget-config-header-components">
       <ng-content select=".tb-widget-config-header-prefix"></ng-content>
@@ -44,14 +44,10 @@
             <mat-form-field fxFlex appearance="outline" subscriptSizing="dynamic">
               <input matInput formControlName="title" placeholder="{{ 'widget-config.set' | translate }}">
             </mat-form-field>
-            <tb-font-settings formControlName="titleFont"
-                              clearButton
-                              [previewText]="widgetSettings.get('title').value"
-                              [initialPreviewStyle]="widgetSettings.get('titleStyle').value">
+            <tb-font-settings formControlName="titleFont" clearButton [previewText]="widgetSettings.get('title').value"
+              [initialPreviewStyle]="widgetSettings.get('titleStyle').value">
             </tb-font-settings>
-            <tb-color-input asBoxInput
-                            colorClearButton
-                            formControlName="titleColor">
+            <tb-color-input asBoxInput colorClearButton formControlName="titleColor">
             </tb-color-input>
           </div>
         </div>
@@ -62,21 +58,17 @@
           </mat-form-field>
         </div>
         <div class="tb-form-row space-between column-xs">
-          <mat-slide-toggle class="mat-slide"  formControlName="showTitleIcon">
+          <mat-slide-toggle class="mat-slide" formControlName="showTitleIcon">
             {{ 'widget-config.display-icon' | translate }}
           </mat-slide-toggle>
           <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
             <mat-form-field appearance="outline" subscriptSizing="dynamic">
               <input matInput formControlName="iconSize">
             </mat-form-field>
-            <tb-material-icon-select asBoxInput
-                                     iconClearButton
-                                     [color]="widgetSettings.get('iconColor').value"
+            <tb-material-icon-select asBoxInput iconClearButton [color]="widgetSettings.get('iconColor').value"
               formControlName="titleIcon">
             </tb-material-icon-select>
-            <tb-color-input asBoxInput
-                            colorClearButton
-                            formControlName="iconColor">
+            <tb-color-input asBoxInput colorClearButton formControlName="iconColor">
             </tb-color-input>
           </div>
         </div>
@@ -87,11 +79,8 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
-            <tb-json-object-edit
-              [editorStyle]="{minHeight: '100px'}"
-              label="{{ 'widget-config.title-style' | translate }}"
-              formControlName="titleStyle"
-            ></tb-json-object-edit>
+            <tb-json-object-edit [editorStyle]="{minHeight: '100px'}"
+              label="{{ 'widget-config.title-style' | translate }}" formControlName="titleStyle"></tb-json-object-edit>
           </ng-template>
         </mat-expansion-panel>
       </div>
@@ -99,16 +88,12 @@
         <div class="tb-form-panel-title" translate>widget-config.card-style</div>
         <div class="tb-form-row space-between">
           <div>{{ 'widget-config.text-color' | translate }}</div>
-          <tb-color-input asBoxInput
-                          colorClearButton
-                          formControlName="color">
+          <tb-color-input asBoxInput colorClearButton formControlName="color">
           </tb-color-input>
         </div>
         <div class="tb-form-row space-between">
           <div>{{ 'widget-config.background-color' | translate }}</div>
-          <tb-color-input asBoxInput
-                          colorClearButton
-                          formControlName="backgroundColor">
+          <tb-color-input asBoxInput colorClearButton formControlName="backgroundColor">
           </tb-color-input>
         </div>
         <div class="tb-form-row space-between">
@@ -139,15 +124,10 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
-            <tb-json-object-edit
-              [editorStyle]="{minHeight: '100px'}"
+            <tb-json-object-edit [editorStyle]="{minHeight: '100px'}"
               label="{{ 'widget-config.widget-style' | translate }}"
-              formControlName="widgetStyle"
-            ></tb-json-object-edit>
-            <tb-css
-              label="{{ 'widget-config.widget-css' | translate }}"
-              formControlName="widgetCss"
-            ></tb-css>
+              formControlName="widgetStyle"></tb-json-object-edit>
+            <tb-css label="{{ 'widget-config.widget-css' | translate }}" formControlName="widgetCss"></tb-css>
           </ng-template>
         </mat-expansion-panel>
       </div>
@@ -156,15 +136,18 @@
         <mat-slide-toggle class="mat-slide slide-block" formControlName="enableFullscreen">
           {{ 'widget-config.enable-fullscreen' | translate }}
         </mat-slide-toggle>
+        <!-- **************************** -->
+        <mat-slide-toggle class="mat-slide slide-block" formControlName="enableDataExport">
+          {{ 'widget-config.enable-data-export' | translate }}
+        </mat-slide-toggle>
+        <!-- **************************** -->
       </div>
     </div>
-    <div [fxShow]="selectedOption === 'actions'" [formGroup]="actionsSettings" class="mat-content" style="height: 100%;">
+    <div [fxShow]="selectedOption === 'actions'" [formGroup]="actionsSettings" class="mat-content"
+      style="height: 100%;">
       <div class="tb-form-panel" style="height: 100%;">
-        <tb-manage-widget-actions
-          [callbacks]="widgetConfigCallbacks"
-          [widgetType] = "modelValue.widgetType"
-          [actionSources]="modelValue.actionSources"
-          formControlName="actions">
+        <tb-manage-widget-actions [callbacks]="widgetConfigCallbacks" [widgetType]="modelValue.widgetType"
+          [actionSources]="modelValue.actionSources" formControlName="actions">
         </tb-manage-widget-actions>
       </div>
     </div>
@@ -183,13 +166,15 @@
         <div class="tb-form-row space-between">
           <div translate>widget-config.order</div>
           <mat-form-field appearance="outline" class="number" subscriptSizing="dynamic">
-            <input matInput formControlName="mobileOrder" type="number" step="1" placeholder="{{ 'widget-config.set' | translate }}">
+            <input matInput formControlName="mobileOrder" type="number" step="1"
+              placeholder="{{ 'widget-config.set' | translate }}">
           </mat-form-field>
         </div>
         <div class="tb-form-row space-between">
           <div translate>widget-config.height</div>
           <mat-form-field appearance="outline" class="number" subscriptSizing="dynamic">
-            <input matInput formControlName="mobileHeight" type="number" min="1" step="1" placeholder="{{ 'widget-config.set' | translate }}">
+            <input matInput formControlName="mobileHeight" type="number" min="1" step="1"
+              placeholder="{{ 'widget-config.set' | translate }}">
           </mat-form-field>
         </div>
       </div>
@@ -206,8 +191,7 @@
           <ng-container *ngTemplateOutlet="data"></ng-container>
           <ng-container *ngTemplateOutlet="appearance"></ng-container>
           <ng-container [formGroup]="actionsSettings">
-            <tb-widget-actions-panel
-              formControlName="actions">
+            <tb-widget-actions-panel formControlName="actions">
             </tb-widget-actions-panel>
           </ng-container>
         </div>
@@ -216,29 +200,23 @@
   </ng-template>
   <ng-template #data>
     <ng-container *ngIf="displayTimewindowConfig" [formGroup]="dataSettings">
-      <tb-timewindow-config-panel
-        [onlyHistoryTimewindow]="onlyHistoryTimewindow()"
-        formControlName="timewindowConfig">
+      <tb-timewindow-config-panel [onlyHistoryTimewindow]="onlyHistoryTimewindow()" formControlName="timewindowConfig">
       </tb-timewindow-config-panel>
     </ng-container>
     <div *ngIf="widgetType === widgetTypes.alarm" [formGroup]="dataSettings" class="tb-form-panel">
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div class="tb-form-panel-title" translate>alarm.filter</div>
-        <button mat-button color="primary"
-                (click)="alarmFilterConfig.reset()">
+        <button mat-button color="primary" (click)="alarmFilterConfig.reset()">
           {{ 'action.reset' | translate }}
         </button>
       </div>
-      <tb-alarm-filter-config #alarmFilterConfig buttonMode="false"
-                              formControlName="alarmFilterConfig" [initialAlarmFilterConfig]="{}"></tb-alarm-filter-config>
+      <tb-alarm-filter-config #alarmFilterConfig buttonMode="false" formControlName="alarmFilterConfig"
+        [initialAlarmFilterConfig]="{}"></tb-alarm-filter-config>
     </div>
     <div *ngIf="widgetType !== widgetTypes.rpc &&
                 widgetType !== widgetTypes.alarm &&
-                modelValue?.isDataEnabled"
-         [formGroup]="dataSettings">
-      <tb-datasources
-        [configMode]="widgetConfigMode"
-        formControlName="datasources">
+                modelValue?.isDataEnabled" [formGroup]="dataSettings">
+      <tb-datasources [configMode]="widgetConfigMode" formControlName="datasources">
       </tb-datasources>
     </div>
     <ng-container *ngIf="widgetType === widgetTypes.rpc &&
@@ -246,11 +224,10 @@
       <tb-target-device formControlName="targetDevice">
       </tb-target-device>
     </ng-container>
-    <div *ngIf="widgetType === widgetTypes.alarm && modelValue?.isDataEnabled"
-         [formGroup]="dataSettings" class="tb-form-panel">
+    <div *ngIf="widgetType === widgetTypes.alarm && modelValue?.isDataEnabled" [formGroup]="dataSettings"
+      class="tb-form-panel">
       <div class="tb-form-panel-title" translate>widget-config.alarm-source</div>
-      <tb-datasource
-        formControlName="alarmSource">
+      <tb-datasource formControlName="alarmSource">
       </tb-datasource>
     </div>
     <div *ngIf="displayLimits" class="tb-form-panel" [formGroup]="widgetSettings">
@@ -267,34 +244,31 @@
     <div *ngIf="displayAppearanceDataSettings" class="tb-form-panel" [formGroup]="widgetSettings">
       <div class="tb-form-panel-title" translate>widget-config.data-settings</div>
       <div *ngIf="displayUnitsConfig" class="tb-form-row space-between">
-        <div tb-hint-tooltip-icon="{{'widget-config.default-data-key-parameter-hint' | translate}}" translate>widget-config.units-by-default</div>
-        <tb-unit-input
-          formControlName="units">
+        <div tb-hint-tooltip-icon="{{'widget-config.default-data-key-parameter-hint' | translate}}" translate>
+          widget-config.units-by-default</div>
+        <tb-unit-input formControlName="units">
         </tb-unit-input>
       </div>
       <div *ngIf="displayUnitsConfig" class="tb-form-row space-between">
-        <div tb-hint-tooltip-icon="{{'widget-config.default-data-key-parameter-hint' | translate}}" translate>widget-config.decimals-by-default</div>
+        <div tb-hint-tooltip-icon="{{'widget-config.default-data-key-parameter-hint' | translate}}" translate>
+          widget-config.decimals-by-default</div>
         <mat-form-field appearance="outline" class="number" subscriptSizing="dynamic">
-          <input matInput formControlName="decimals" type="number" min="0" max="15" step="1" placeholder="{{ 'widget-config.set' | translate }}">
+          <input matInput formControlName="decimals" type="number" min="0" max="15" step="1"
+            placeholder="{{ 'widget-config.set' | translate }}">
         </mat-form-field>
       </div>
       <div *ngIf="displayNoDataDisplayMessageConfig" class="tb-form-row column-xs">
         <div class="fixed-title-width" translate>widget-config.no-data-display-message</div>
         <mat-form-field fxFlex appearance="outline" subscriptSizing="dynamic">
-          <input matInput formControlName="noDataDisplayMessage" placeholder="{{ 'widget-config.set-message' | translate }}">
+          <input matInput formControlName="noDataDisplayMessage"
+            placeholder="{{ 'widget-config.set-message' | translate }}">
         </mat-form-field>
       </div>
     </div>
     <div *ngIf="displayAdvancedAppearance" style="height: 100%;" [formGroup]="advancedSettings">
-      <tb-widget-settings
-        [aliasController]="aliasController"
-        [dataKeyCallbacks]="widgetConfigCallbacks"
-        [dashboard]="dashboard"
-        [widget]="widget"
-        [widgetConfig]="modelValue"
-        formControlName="settings">
+      <tb-widget-settings [aliasController]="aliasController" [dataKeyCallbacks]="widgetConfigCallbacks"
+        [dashboard]="dashboard" [widget]="widget" [widgetConfig]="modelValue" formControlName="settings">
       </tb-widget-settings>
     </div>
   </ng-template>
 </div>
-
